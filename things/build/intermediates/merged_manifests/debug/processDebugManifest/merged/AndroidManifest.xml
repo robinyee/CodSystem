@@ -19,8 +19,7 @@
         android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
         android:debuggable="true"
         android:label="@string/app_name"
-        android:sharedUserId="android.uid.system"
-        android:testOnly="true" >
+        android:sharedUserId="android.uid.system" >
         <uses-library android:name="com.google.android.things" />
 
         <activity android:name="com.example.robin.codsystem.MainActivity" >

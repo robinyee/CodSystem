@@ -1424,6 +1424,7 @@ string dateTimeText
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
 string hide_bottom_view_on_scroll_behavior
+string ipAddr
 string message
 string mtrl_chip_close_icon_content_description
 string password_toggle_content_description
