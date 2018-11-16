@@ -3,6 +3,7 @@ package com.example.robin.codsystem;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -18,10 +19,11 @@ public class SetupActivity extends Activity {
         setContentView(R.layout.activity_setup);
         gotoPage();
 
-        TextView ipAddr = (TextView) findViewById(R.id.ipAddr);
+        TextView ipAddr = findViewById(R.id.ipAddr);
         String ipText = getLocalIpStr(getApplicationContext());
-        ipAddr.setText("远程访问："+ipText+":8080");
-
+        Resources res = getResources();
+        ipAddr.setText(String.format(res.getString(R.string.ipAddr), ipText));
+        //test
     }
 
     //获取IP地址
@@ -42,7 +44,7 @@ public class SetupActivity extends Activity {
     private void gotoPage(){
 
         //点击Home按钮
-        ImageButton buttonHome = (ImageButton) findViewById(R.id.imageButtonHome);
+        ImageButton buttonHome = findViewById(R.id.imageButtonHome);
         buttonHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +53,7 @@ public class SetupActivity extends Activity {
             }
         });
         //点击Data按钮
-        ImageButton buttonData = (ImageButton) findViewById(R.id.imageButtonData);
+        ImageButton buttonData = findViewById(R.id.imageButtonData);
         buttonData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +62,7 @@ public class SetupActivity extends Activity {
             }
         });
         //点击Control按钮
-        ImageButton buttonControl = (ImageButton) findViewById(R.id.imageButtonControl);
+        ImageButton buttonControl = findViewById(R.id.imageButtonControl);
         buttonControl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

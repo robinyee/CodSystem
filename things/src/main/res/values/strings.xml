@@ -6,4 +6,5 @@
     <string name="message">当前状态</string>
     <string name="dateTimeText">2018年11月10日 10:18</string>
     <string name="todo">TODO</string>
+    <string name="ipAddr">远程访问：%1$s:8080</string>
 </resources>
