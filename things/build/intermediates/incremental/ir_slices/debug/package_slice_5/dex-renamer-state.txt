@@ -1,0 +1,4 @@
+#Fri Nov 16 13:57:34 CST 2018
+base.0=D\:\\MEGA\\AndroidStudioProjects\\CodSystem\\things\\build\\intermediates\\transforms\\dexMerger\\debug\\5
+path.0=classes.dex
+renamed.0=classes.dex

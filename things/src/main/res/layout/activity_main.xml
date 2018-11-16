@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="96dp"
+        android:layout_height="0dp"
+        android:background="#e9e9e9"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageButton
+            android:id="@+id/imageButtonHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_home_green_24dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_view_list_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_dashboard_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/imageButtonSetup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_settings_black_24dp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="345dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498">
+
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="181dp"
+            android:layout_height="175dp"
+            android:gravity="center"
+            android:text="@string/codValue"
+            android:textSize="64sp"
+            tools:layout_editor_absoluteX="331dp"
+            tools:layout_editor_absoluteY="45dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="373dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/unitName"
+            android:textSize="64sp" />
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/startup"
+        android:layout_width="109dp"
+        android:layout_height="65dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="36dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_play_circle_outline_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="80dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/message"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:indeterminate="false"
+        android:max="50"
+        android:progress="25"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="206dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="right"
+        android:text="@string/dateTimeText"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        android:layout_width="240dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/statusText"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/progressBar2"
+        app:layout_constraintStart_toEndOf="@+id/textView3" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_error_black_24dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="90dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="left"
+        android:text="CODMn"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>

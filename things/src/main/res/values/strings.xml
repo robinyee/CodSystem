@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">高锰酸盐指数分析仪</string>
+    <string name="codValue">3.25</string>
+    <string name="unitName">mg/L</string>
+    <string name="statusText">系统待机</string>
+    <string name="message">当前状态</string>
+    <string name="dateTimeText">2018年11月10日 10:18</string>
+    <string name="todo">TODO</string>
+</resources>
