@@ -23,7 +23,6 @@ public class SetupActivity extends Activity {
         String ipText = getLocalIpStr(getApplicationContext());
         Resources res = getResources();
         ipAddr.setText(String.format(res.getString(R.string.ipAddr), ipText));
-        //test
     }
 
     //获取IP地址
