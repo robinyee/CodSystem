@@ -22,7 +22,7 @@ public class SetupActivity extends Activity {
         TextView ipAddr = findViewById(R.id.ipAddr);
         String ipText = getLocalIpStr(getApplicationContext());
         Resources res = getResources();
-        ipAddr.setText(String.format(res.getString(R.string.ipAddr), ipText));
+        ipAddr.setText(String.format(res.getString(R.string.ipAddr), ipText));  //远程访问IP及端口
     }
 
     //获取IP地址
