@@ -1066,6 +1066,7 @@ id FUNCTION
 id META
 id SHIFT
 id SYM
+id SwitchD1
 id action0
 id action_bar
 id action_bar_activity_content
