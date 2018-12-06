@@ -50,7 +50,7 @@ public class ControlActivity extends Activity {
             e.printStackTrace();
         }
 
-        //开关按钮状态改变时，输出D1引脚
+        //开关按钮状态改变时，输出D1引脚.
         Switch switchD1 = (Switch) findViewById(R.id.SwitchD1);
         switchD1.setChecked(true);
         switchD1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
