@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.google.android.things.pio.Gpio;
@@ -19,6 +21,11 @@ import static android.content.ContentValues.TAG;
 
 public class ControlActivity extends Activity {
 
+    //设置输入输出引脚
+    private static final String GPIO_OUT_D1 = "BCM17";
+    private Gpio mGpioOutD1;
+
+    /*
     //输入和输出GPIO引脚名称
     private static final String GPIO_IN_NAME = "BCM21";
     private static final String GPIO_OUT_NAME = "BCM5";
@@ -26,6 +33,7 @@ public class ControlActivity extends Activity {
     //输入和输出Gpio
     private Gpio mGpioIn;
     private Gpio mGpioOut;
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +42,32 @@ public class ControlActivity extends Activity {
         setContentView(R.layout.activity_control);
         gotoPage();
 
+        PeripheralManager manager = PeripheralManager.getInstance();
+        try {
+            mGpioOutD1 = manager.openGpio(GPIO_OUT_D1);
+            mGpioOutD1.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //开关按钮状态改变时，输出D1引脚
+        Switch switchD1 = (Switch) findViewById(R.id.SwitchD1);
+        switchD1.setChecked(true);
+        switchD1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                try {
+                    mGpioOutD1.setValue(isChecked);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+
+        /*
         PeripheralManager manager = PeripheralManager.getInstance();
         List<String> portList = manager.getGpioList();
         if (portList.isEmpty()) {
@@ -44,8 +78,9 @@ public class ControlActivity extends Activity {
 
         TextView gpioMsg = (TextView) findViewById(R.id.gpioList);
         gpioMsg.setText("可用GPIO端口："+portList);
-
-        //
+        */
+        /*
+        PeripheralManager manager = PeripheralManager.getInstance();
         try {
             //打开并设置输入Gpio，监听输入信号变化（开关按钮的开关）
             mGpioIn = manager.openGpio(GPIO_IN_NAME);
@@ -60,15 +95,18 @@ public class ControlActivity extends Activity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //
+        */
+
     }
 
+
+    /*
     private GpioCallback mGpioCallback = new GpioCallback() {
         @Override
         public boolean onGpioEdge(Gpio gpio) {
             try {
                 //当按开关按钮的时候，改变输出Gpio的信号，从而控制LED灯的亮和灭
-                mGpioOut.setValue(!mGpioOut.getValue());
+                mGpioOutD1.setValue(!mGpioOutD1.getValue());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -79,7 +117,9 @@ public class ControlActivity extends Activity {
         public void onGpioError(Gpio gpio, int error) {
         }
     };
+    */
 
+    /*
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -103,6 +143,7 @@ public class ControlActivity extends Activity {
             }
         }
     }
+    */
 
     private void gotoPage(){
 
