@@ -45,20 +45,20 @@ public class ControlActivity extends Activity {
         PeripheralManager manager = PeripheralManager.getInstance();
         try {
             mGpioOutD1 = manager.openGpio(GPIO_OUT_D1);
-            mGpioOutD1.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);
+            mGpioOutD1.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);  //初始化为高电平，低电平输出开关量
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         //开关按钮状态改变时，输出D1引脚.
         Switch switchD1 = (Switch) findViewById(R.id.SwitchD1);
-        switchD1.setChecked(true);
+        switchD1.setChecked(false);
         switchD1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
             {
                 try {
-                    mGpioOutD1.setValue(isChecked);
+                    mGpioOutD1.setValue(!isChecked); //输出板低电压驱动
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
