@@ -1,39 +1,55 @@
 package com.example.robin.codsystem;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.Switch;
-import android.widget.TextView;
 
 import com.google.android.things.pio.Gpio;
-import com.google.android.things.pio.GpioCallback;
 import com.google.android.things.pio.PeripheralManager;
 
 import java.io.IOException;
-import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class ControlActivity extends Activity {
 
     //设置输入输出引脚
-    private static final String GPIO_OUT_D1 = "BCM17";
-    private Gpio mGpioOutD1;
+    private static final String GPIO_OUT_D2 = "BCM17";  //D2进样阀开关量输出
+    private Gpio mGpioOutD2;
+    private static final String GPIO_OUT_D3 = "BCM18";  //D3排空阀开关量输出
+    private Gpio mGpioOutD3;
+    private static final String GPIO_OUT_D4 = "BCM27";  //D4微量泵开关量输出
+    private Gpio mGpioOutD4;
+    private static final String GPIO_OUT_D5 = "BCM22";  //D7加热开关量输出
+    private Gpio mGpioOutD5;
+    private static final String GPIO_OUT_D7 = "BCM24";  //D7加热开关量输出
+    private Gpio mGpioOutD7;
+    private static final String GPIO_OUT_D8 = "BCM21";  //D8LED灯开关量输出
+    private Gpio mGpioOutD8;
+    private static final String GPIO_OUT_M1 = "BCM20";  //M1步进电机启动
+    private Gpio mGpioOutM1;
+    private static final String GPIO_OUT_M2 = "BCM16";  //M1步进电机启动
+    private Gpio mGpioOutM2;
 
-    /*
-    //输入和输出GPIO引脚名称
-    private static final String GPIO_IN_NAME = "BCM21";
-    private static final String GPIO_OUT_NAME = "BCM5";
+    private static final int PUMP_D4 = 114;
+    private static final int PUMP_S1 = 121;
+    private static final int PUMP_S2 = 122;
+    private static final int PUMP_S3 = 123;
+    private static final int PUMP_S4 = 124;
+    private static final int PUMP_S6 = 126;
 
-    //输入和输出Gpio
-    private Gpio mGpioIn;
-    private Gpio mGpioOut;
-    */
+    private static final int PUMP_STAR = 101;   //线程间通信信息，微量泵启动
+    private static final int PUMP_STOP = 102;   //线程间通信信息，微量泵停止
+
+    Switch switchName;
+    Switch switchD1, switchD2, switchD3, switchD4, switchD5, switchD6, switchD7, switchD8;
+    Switch switchS1, switchS2, switchS3, switchS4, switchS5, switchS6;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,106 +60,207 @@ public class ControlActivity extends Activity {
 
         PeripheralManager manager = PeripheralManager.getInstance();
         try {
-            mGpioOutD1 = manager.openGpio(GPIO_OUT_D1);
-            mGpioOutD1.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);  //初始化为高电平，低电平输出开关量
+            mGpioOutD2 = manager.openGpio(GPIO_OUT_D2);
+            mGpioOutD2.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);  //初始化为高电平，低电平输出开关量
+            mGpioOutD3 = manager.openGpio(GPIO_OUT_D3);
+            mGpioOutD3.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);  //初始化为高电平，低电平输出开关量
+            mGpioOutD4 = manager.openGpio(GPIO_OUT_D4);
+            mGpioOutD4.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);  //初始化为高电平，低电平输出开关量
+            mGpioOutD5 = manager.openGpio(GPIO_OUT_D5);
+            mGpioOutD5.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);  //初始化为高电平，低电平输出开关量
+            mGpioOutD7 = manager.openGpio(GPIO_OUT_D7);
+            mGpioOutD7.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);  //初始化为高电平，低电平输出开关量
+            mGpioOutD8 = manager.openGpio(GPIO_OUT_D8);
+            mGpioOutD8.setDirection(Gpio.DIRECTION_OUT_INITIALLY_LOW);  //初始化为低电平，高电平输出开关量，电路板错误。
+            mGpioOutM1 = manager.openGpio(GPIO_OUT_M1);
+            mGpioOutM1.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);  //初始化为高电平，低电平输出开关量
+            mGpioOutM2 = manager.openGpio(GPIO_OUT_M2);
+            mGpioOutM2.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);  //初始化为高电平，低电平输出开关量
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        //开关按钮状态改变时，输出D1引脚.
-        Switch switchD1 = (Switch) findViewById(R.id.SwitchD1);
-        switchD1.setChecked(false);
-        switchD1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        //开关按钮状态改变时，输出D2引脚.
+        switchD2 = (Switch) findViewById(R.id.SwitchD2);
+        switchD2.setChecked(false);
+        switchD2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
         {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
             {
                 try {
-                    mGpioOutD1.setValue(!isChecked); //输出板低电压驱动
+                    mGpioOutD2.setValue(!isChecked); //输出板低电压驱动
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
 
+        //开关按钮状态改变时，输出D3引脚.
+        switchD3 = (Switch) findViewById(R.id.SwitchD3);
+        switchD3.setChecked(false);
+        switchD3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                try {
+                    mGpioOutD3.setValue(!isChecked); //输出板低电压驱动
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
+        //开关按钮状态改变时，输出D4引脚.
+        switchD4 = (Switch) findViewById(R.id.SwitchD4);
+        switchD4.setChecked(false);
+        switchD4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                if(isChecked) {
+                    PumpRunnable myThread = new PumpRunnable();
+                    myThread.setName(PUMP_D4);
+                    myThread.setNum(94);
+                    Thread thread = new Thread(myThread);
+                    thread.start();
+                }
+            }
+        });
 
-        /*
-        PeripheralManager manager = PeripheralManager.getInstance();
-        List<String> portList = manager.getGpioList();
-        if (portList.isEmpty()) {
-            Log.i(TAG, "这个设备没有GPIO端口可用");
-        } else {
-            Log.i(TAG, "可用端口：" + portList);
-        }
+        //开关按钮状态改变时，输出D5引脚.
+        switchD5 = (Switch) findViewById(R.id.SwitchD5);
+        switchD5.setChecked(false);
+        switchD5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                try {
+                    mGpioOutD5.setValue(!isChecked); //输出板低电压驱动
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-        TextView gpioMsg = (TextView) findViewById(R.id.gpioList);
-        gpioMsg.setText("可用GPIO端口："+portList);
-        */
-        /*
-        PeripheralManager manager = PeripheralManager.getInstance();
-        try {
-            //打开并设置输入Gpio，监听输入信号变化（开关按钮的开关）
-            mGpioIn = manager.openGpio(GPIO_IN_NAME);
-            mGpioIn.setDirection(Gpio.DIRECTION_IN);
-            mGpioIn.setEdgeTriggerType(Gpio.EDGE_FALLING);
-            mGpioIn.setActiveType(Gpio.ACTIVE_HIGH);
-            mGpioIn.registerGpioCallback(mGpioCallback);
+        //开关按钮状态改变时，输出D8引脚.
+        switchD8 = (Switch) findViewById(R.id.SwitchD8);
+        switchD8.setChecked(false);
+        switchD8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                try {
+                    mGpioOutD8.setValue(isChecked); //输出板低电压驱动
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-            //打开并设置输出Gpio
-            mGpioOut = manager.openGpio(GPIO_OUT_NAME);
-            mGpioOut.setDirection(Gpio.DIRECTION_OUT_INITIALLY_HIGH);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
+        //进水样
+        switchS1 = (Switch) findViewById(R.id.SwitchS1);
+        switchS1.setChecked(false);
+        switchS1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                if(isChecked) {
+                    MotorRunnable myThread = new MotorRunnable();
+                    myThread.setName(PUMP_S1);
+                    myThread.setT(5);
+                    myThread.setNum(100000);
+                    Thread thread = new Thread(myThread);
+                    thread.start();
+                }
+            }
+        });
+
+        //加硫酸试剂
+        switchS2 = (Switch) findViewById(R.id.SwitchS2);
+        switchS2.setChecked(false);
+        switchS2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                if(isChecked) {
+                    PumpRunnable myThread = new PumpRunnable();
+                    myThread.setName(PUMP_S2);
+                    myThread.setNum(94);
+                    Thread thread = new Thread(myThread);
+                    thread.start();
+                }
+            }
+        });
+
+        //加高锰酸钾试剂
+        switchS3 = (Switch) findViewById(R.id.SwitchS3);
+        switchS3.setChecked(false);
+        switchS3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                if(isChecked) {
+                    PumpRunnable myThread = new PumpRunnable();
+                    myThread.setName(PUMP_S3);
+                    myThread.setNum(188);
+                    Thread thread = new Thread(myThread);
+                    thread.start();
+                }
+            }
+        });
+
+        //加草酸钠试剂
+        switchS4 = (Switch) findViewById(R.id.SwitchS4);
+        switchS4.setChecked(false);
+        switchS4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                if(isChecked) {
+                    PumpRunnable myThread = new PumpRunnable();
+                    myThread.setName(PUMP_S4);
+                    myThread.setNum(188);
+                    Thread thread = new Thread(myThread);
+                    thread.start();
+                }
+            }
+        });
+
+        //消解
+        switchS5 = (Switch) findViewById(R.id.SwitchS5);
+        switchS5.setChecked(false);
+        switchS5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                if(isChecked) {
+                    //pumpNum = 94;
+                    //new Thread(new PumpRunnable()).start();
+                }
+            }
+        });
+
+        //滴定
+        switchS6 = (Switch) findViewById(R.id.SwitchS6);
+        switchS6.setChecked(false);
+        switchS6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
+            {
+                if(isChecked) {
+                    PumpRunnable myThread = new PumpRunnable();
+                    myThread.setName(PUMP_S6);
+                    myThread.setNum(400);
+                    Thread thread = new Thread(myThread);
+                    thread.start();
+                }
+            }
+        });
 
     }
 
 
-    /*
-    private GpioCallback mGpioCallback = new GpioCallback() {
-        @Override
-        public boolean onGpioEdge(Gpio gpio) {
-            try {
-                //当按开关按钮的时候，改变输出Gpio的信号，从而控制LED灯的亮和灭
-                mGpioOutD1.setValue(!mGpioOutD1.getValue());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return true;
-        }
-
-        @Override
-        public void onGpioError(Gpio gpio, int error) {
-        }
-    };
-    */
-
-    /*
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        //关闭Gpio
-        if (mGpioIn != null) {
-            try {
-                mGpioIn.unregisterGpioCallback(mGpioCallback);
-                mGpioIn.close();
-                mGpioIn = null;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        if (mGpioOut != null) {
-            try {
-                mGpioOut.close();
-                mGpioOut = null;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    */
 
     private void gotoPage(){
 
@@ -185,4 +302,117 @@ public class ControlActivity extends Activity {
         });
 
     }
+
+    //微量泵状态处理信息
+    @SuppressLint("HandlerLeak")
+    private Handler pumpHandler = new Handler(){
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case PUMP_D4:
+                    switchName = switchD4;
+                    break;
+                case PUMP_S1:
+                    switchName = switchS1;
+                    break;
+                case PUMP_S2:
+                    switchName = switchS2;
+                    break;
+                case PUMP_S3:
+                    switchName = switchS3;
+                    break;
+                case PUMP_S4:
+                    switchName = switchS4;
+                    break;
+                case PUMP_S6:
+                    switchName = switchS6;
+                    break;
+                case PUMP_STAR:
+                    switchName.setChecked(true);
+                    break;
+                case PUMP_STOP:
+                    switchName.setChecked(false);
+                    break;
+            }
+        }
+    };
+
+    //微量泵加液线程
+    private class PumpRunnable implements Runnable{
+
+        private int id;
+        public void setName(int id)
+        {
+            this.id = id;
+        }
+
+        private int num;
+        public void setNum(int num)
+        {
+            this.num = num;
+        }
+
+        public void run() {
+            try {
+                pumpHandler.sendEmptyMessage(id);
+                pumpHandler.sendEmptyMessage(PUMP_STAR);
+                for (int i = 0; i < num; i++) {
+                    mGpioOutD4.setValue(false);
+                    Thread.sleep(150); // 休眠1秒
+                    mGpioOutD4.setValue(true);
+                    Thread.sleep(350); // 休眠1秒
+                }
+                pumpHandler.sendEmptyMessage(PUMP_STOP);
+            } catch (InterruptedException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    //微量泵加液线程
+    private class MotorRunnable implements Runnable{
+
+        private int id;
+        public void setName(int id)
+        {
+            this.id = id;
+        }
+
+        private int t;
+        public void setT(int t)
+        {
+            this.t = t;
+        }
+
+        public void setNum(int num)
+        {
+            this.num = num;
+        }
+
+        private int num;
+        public void run() {
+            try {
+                pumpHandler.sendEmptyMessage(id);
+                pumpHandler.sendEmptyMessage(PUMP_STAR);
+
+                //mGpioOutD7.setValue(true);
+                for (int i = 0; i < num; i++) {
+                    mGpioOutM1.setValue(false);
+                    mGpioOutM2.setValue(false);
+                    Thread.sleep(t); // 保持时间
+                    mGpioOutM1.setValue(true);
+                    mGpioOutM2.setValue(true);
+                    Thread.sleep(t); // 保持时间
+                }
+                //mGpioOutD7.setValue(false);
+                pumpHandler.sendEmptyMessage(PUMP_STOP);
+            } catch (InterruptedException | IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
 }
+
+
+

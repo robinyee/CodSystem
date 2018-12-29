@@ -4,23 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ControlActivity">
-
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="仪器控制"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:background="@drawable/line">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -73,31 +57,381 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/gpioList"
-        android:layout_width="496dp"
-        android:layout_height="173dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="GPIO"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="196dp"
+        android:layout_height="0dp"
+        android:background="@drawable/line"
+        android:gravity="top|center"
+        android:orientation="vertical"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <Switch
-        android:id="@+id/SwitchD1"
-        android:layout_width="134dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:checked="false"
-        android:text="进样阀"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:padding="4dp"
+            android:text="输入输出"
+            android:textSize="16sp" />
 
+        <Switch
+            android:id="@+id/SwitchD2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="进样阀"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchD3"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="排空阀"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchD4"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="微量泵"
+            android:textSize="16sp" />
+<!--
+        <Switch
+            android:id="@+id/SwitchD5"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="加热"
+            android:textSize="16sp" />-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="温度"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/SwitchD5"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:checked="false"
+                android:padding="8dp"
+                android:text="加热器"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!--
+                <Switch
+                    android:id="@+id/SwitchD8"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="2dp"
+                    android:checked="false"
+                    android:padding="8dp"
+                    android:text="LED灯"
+                    android:textSize="16sp" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="光电值"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchD8"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="光源灯"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="位置"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/SwitchS6"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:checked="false"
+                android:padding="8dp"
+                android:text="回转阀"
+                android:textSize="16sp" />
+            <!--
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="回转阀"
+                android:textColor="@color/colorPrimaryDark" />
+                -->
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="196dp"
+        android:layout_height="0dp"
+        android:background="@drawable/line"
+        android:gravity="top|center"
+        android:orientation="vertical"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.091">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:padding="4dp"
+            android:text="分步操作"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="进样"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="加硫酸"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS3"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="加高锰酸钾"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS4"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="加草酸钠"
+            android:textSize="16sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="时间"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/SwitchS6"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:checked="false"
+                android:padding="8dp"
+                android:text="消解"
+                android:textSize="16sp" />
+            <!--
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消解"
+                android:textColor="@color/colorPrimaryDark" />
+            -->
+        </LinearLayout>
+
+
+        <!--
+                <Switch
+                    android:id="@+id/SwitchS5"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_margin="2dp"
+                    android:checked="false"
+                    android:padding="8dp"
+                    android:text="滴定"
+                    android:textSize="16sp" />
+        -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="75dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="滴定值"
+                android:textSize="16sp" />
+
+            <Switch
+                android:id="@+id/SwitchS6"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:checked="false"
+                android:padding="8dp"
+                android:text="滴定"
+                android:textSize="16sp" />
+            <!--
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消解"
+                android:textColor="@color/colorPrimaryDark" />
+            -->
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="196dp"
+        android:layout_height="0dp"
+        android:background="@drawable/line"
+        android:gravity="top|center"
+        android:orientation="vertical"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout4"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:padding="4dp"
+            android:text="功能程序"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="水质测定"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="仪器自检"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS3"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="清洗管路"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS4"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="试剂标定"
+            android:textSize="16sp" />
+
+        <Switch
+            android:id="@+id/SwitchS5"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_margin="2dp"
+            android:checked="false"
+            android:padding="8dp"
+            android:text="仪表校准"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="紧急停止"
+            android:textColor="@color/colorAccent" />
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
