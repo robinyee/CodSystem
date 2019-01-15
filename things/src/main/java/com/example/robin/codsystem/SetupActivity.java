@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class SetupActivity extends Activity {
@@ -19,10 +21,16 @@ public class SetupActivity extends Activity {
         setContentView(R.layout.activity_setup);
         gotoPage();
 
-        TextView ipAddr = findViewById(R.id.ipAddr);
         String ipText = getLocalIpStr(getApplicationContext());
         Resources res = getResources();
-        ipAddr.setText(String.format(res.getString(R.string.ipAddr), ipText));  //远程访问IP及端口，修改本地代码
+        String UrlString = "http://" + ipText + ":8080";
+
+        //生成网址的二维码
+        ImageView mImageView = (ImageView) findViewById(R.id.imageViewZXing);
+        Bitmap mBitmap = QRCodeUtil.createQRCodeBitmap(UrlString, 70, 70);
+        mImageView.setImageBitmap(mBitmap);
+
+
     }
 
     //获取IP地址

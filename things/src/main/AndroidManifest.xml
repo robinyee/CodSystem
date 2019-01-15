@@ -12,29 +12,30 @@
         android:sharedUserId="android.uid.system"
         tools:ignore="GoogleAppIndexingWarning">
         <uses-library android:name="com.google.android.things" />
-
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".DataActivity"
             android:label="数据查询" />
         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".ControlActivity"
             android:label="仪器控制" />
         <activity
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:name=".SetupActivity"
             android:label="系统设置" />
-
         <service
             android:name=".SysService"
             android:label="SysService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
     </application>
 
 </manifest>

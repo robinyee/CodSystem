@@ -71,7 +71,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498">
@@ -176,13 +176,13 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="90dp"
-        android:layout_height="33dp"
+        android:layout_width="109dp"
+        android:layout_height="23dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:gravity="left"
-        android:text="CODMn"
-        android:textSize="24sp"
+        android:text="高锰酸盐指数"
+        android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="parent" />
 

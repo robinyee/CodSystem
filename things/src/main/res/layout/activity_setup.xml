@@ -67,25 +67,363 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="系统设置"
-        android:textSize="48sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <ImageView
+        android:id="@+id/imageViewZXing"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@android:color/background_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="136dp"
+        android:layout_height="469dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewLS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="硫酸体积(mL)" />
+
+        <EditText
+            android:id="@+id/editTextLS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="硫酸体积"
+            android:text="6.5" />
+
+        <TextView
+            android:id="@+id/textViewCSN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="草酸钠体积(mL)" />
+
+        <EditText
+            android:id="@+id/editTextCSN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="草酸钠体积"
+            android:text="10" />
+
+        <TextView
+            android:id="@+id/textViewGMSJ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="高锰酸钾体积(mL)" />
+
+        <EditText
+            android:id="@+id/editTextGMSJ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="高锰酸钾体积"
+            android:text="10" />
+
+        <TextView
+            android:id="@+id/textViewSY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="水样体积(mL)" />
+
+        <EditText
+            android:id="@+id/editTextSY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="水样体积"
+            android:text="100" />
+
+        <TextView
+            android:id="@+id/textViewZLS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="蒸馏水体积(mL)" />
+
+        <EditText
+            android:id="@+id/editTextZLS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="蒸馏水体积"
+            android:text="65" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="136dp"
+        android:layout_height="469dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout5"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/textViewLSBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="硫酸步数" />
+
+        <EditText
+            android:id="@+id/editTextLSBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="硫酸步数"
+            android:text="250" />
+
+        <TextView
+            android:id="@+id/textViewCSNBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="草酸钠步数" />
+
+        <EditText
+            android:id="@+id/editTextCSNBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="草酸钠步数"
+            android:text="500" />
+
+        <TextView
+            android:id="@+id/textViewGMSJBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="高锰酸钾步数" />
+
+        <EditText
+            android:id="@+id/editTextGMSJBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="高锰酸钾步数"
+            android:text="500" />
+
+        <TextView
+            android:id="@+id/textViewSYBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="水样步数" />
+
+        <EditText
+            android:id="@+id/editTextSYBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="水样步数"
+            android:text="50" />
+
+        <TextView
+            android:id="@+id/textViewZLSBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="蒸馏水步数" />
+
+        <EditText
+            android:id="@+id/editTextZLSBS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="蒸馏水步数"
+            android:text="32" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="136dp"
+        android:layout_height="469dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout6"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewWLB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="微量泵每步体积(mL)" />
+
+        <EditText
+            android:id="@+id/editTextWLB"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="微量泵每步体积"
+            android:text="0.0025" />
+
+        <TextView
+            android:id="@+id/textViewXJSJ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="消解时间(秒)" />
+
+        <EditText
+            android:id="@+id/editTextXJSJ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberSigned"
+            android:tag="消解时间"
+            android:text="1500" />
+
+        <TextView
+            android:id="@+id/textViewXJWD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="消解温度(℃)" />
+
+        <EditText
+            android:id="@+id/editTextXJWD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="消解温度"
+            android:text="92" />
+
+        <TextView
+            android:id="@+id/textViewDDWD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="滴定温度(℃)" />
+
+        <EditText
+            android:id="@+id/editTextDDWD"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:tag="滴定温度"
+            android:text="80" />
+
+        <TextView
+            android:id="@+id/textViewWDXZ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="温度修正(℃)" />
+
+        <EditText
+            android:id="@+id/editTextWDXZ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="none"
+            android:tag="温度修正"
+            android:text="-12" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="136dp"
+        android:layout_height="469dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="60dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout7"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textViewTXFS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="通讯方式" />
+
+        <Spinner
+            android:id="@+id/spinnerTXFS"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:entries="@array/comType" />
+
+        <TextView
+            android:id="@+id/textViewDZW"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="地址位" />
+
+        <Spinner
+            android:id="@+id/spinnerDZW"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:entries="@array/comAddr" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置日期" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="设置时间" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="结果修正" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:enabled="false"
+        android:text="手机扫码"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewZXing"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ipAddr"
-        android:layout_width="431dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="52dp"
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:gravity="center"
-        android:text="IP"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        android:enabled="false"
+        android:text="远程管理"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewZXing"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
 
 </android.support.constraint.ConstraintLayout>

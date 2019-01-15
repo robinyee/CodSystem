@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="comType">
+        <item>RS232</item>
+        <item>RS485</item>
+        <item>NETWORK</item>
+        <item>WIFIWORK</item>
+        <item>Bluetooth</item>
+    </string-array>
+
+    <string-array name="comAddr">
+        <item>001</item>
+        <item>002</item>
+        <item>003</item>
+        <item>004</item>
+        <item>005</item>
+        <item>006</item>
+        <item>007</item>
+        <item>008</item>
+        <item>009</item>
+        <item>010</item>
+        <item>011</item>
+        <item>012</item>
+        <item>013</item>
+        <item>014</item>
+        <item>015</item>
+    </string-array>
+</resources>

@@ -50,7 +50,6 @@ public class ControlActivity extends Activity {
     Switch switchD1, switchD2, switchD3, switchD4, switchD5, switchD6, switchD7, switchD8;
     Switch switchS1, switchS2, switchS3, switchS4, switchS5, switchS6;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -165,14 +164,16 @@ public class ControlActivity extends Activity {
         {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) //Line A
             {
+
                 if(isChecked) {
+
                     MotorRunnable myThread = new MotorRunnable();
                     myThread.setName(PUMP_S1);
-                    myThread.setT(5);
+                    myThread.setT(1);
                     myThread.setNum(100000);
                     Thread thread = new Thread(myThread);
                     thread.start();
-                }
+               }
             }
         });
 
